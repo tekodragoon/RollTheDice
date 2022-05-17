@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+}
+
+.board {
+  background-color: hsl(200, 55%, 70%);
+  width: 95%;
+  margin: auto;
+  margin-top: 30px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 30px;
+}
+
+.menu {
+  padding: 30px;
+  background-color: green;
+}
+
+.player {
+  display: flex;
+  background-color: red;
+  padding: 40px;
+  gap: 40px;
+  text-align: center;
+}
+
+.dice {
+  width: 100px;
+  height: 100px;
+  background-color: grey;
+}
+
+.gameButton {
+  background-color: green;
+  padding: 30px;
+  display: flex;
+  gap: 30px;
+}
