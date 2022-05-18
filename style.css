@@ -8,35 +8,41 @@ body {
   margin: auto;
   margin-top: 30px;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 30px;
+  gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 15vh 1fr auto 15vh;
+  grid-template-areas:
+    "menu"
+    "player"
+    "dice"
+    "gameButton";
 }
 
 .menu {
-  padding: 30px;
-  background-color: green;
+  background-color: hsl(120, 100%, 25%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .player {
   display: flex;
-  background-color: red;
-  padding: 40px;
-  gap: 40px;
-  text-align: center;
+  background-color: hsl(0, 100%, 50%);
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .dice {
+  background-color: hsl(0, 0%, 50%);
   width: 100px;
   height: 100px;
-  background-color: grey;
+  margin: auto;
 }
 
 .gameButton {
-  background-color: green;
-  padding: 30px;
+  background-color: hsl(120, 100%, 25%);
   display: flex;
-  gap: 30px;
+  justify-content: space-evenly;
+  align-items: center;
 }
