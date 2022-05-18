@@ -7,3 +7,4 @@ const player1ind = document.getElementById("indicator-1");
 const player2ind = document.getElementById("indicator-2");
 const player1score = document.getElementById("score-1");
 const player2score = document.getElementById("score-2");
+const dice = document.getElementById("dice");

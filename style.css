@@ -14,11 +14,10 @@ body {
   gap: 20px;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 15vh 1fr auto 15vh;
+  grid-template-rows: 15vh 1fr  15vh;
   grid-template-areas:
     "menu"
     "player"
-    "dice"
     "gameButton";
 }
 
@@ -34,14 +33,13 @@ body {
   align-items: center;
   font-size: 2rem;
   padding: 20px;
-  gap: 400px;
+  gap: 150px;
 }
 
 .dice {
   background-color: hsl(0, 0%, 50%);
   width: 100px;
   height: 100px;
-  margin: auto;
 }
 
 .gameButton {
