@@ -26,7 +26,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.5rem;
 }
 
 .player {
@@ -44,7 +43,6 @@ body {
 }
 
 .gameButton {
-  background-color: hsl(120, 100%, 25%);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -58,4 +56,5 @@ body {
   border-radius: 5px;
   border: 1px solid hsl(0, 0%, 0%);
   box-shadow: 0 0 4px hsl(0, 0%, 50%);
+  font-size: 2.5rem;
 }
