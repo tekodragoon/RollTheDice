@@ -1,0 +1,1 @@
+const newGameButton = document.getElementById("ngButton");
