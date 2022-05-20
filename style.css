@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap");
 
 body {
   margin: 0;
@@ -14,7 +14,7 @@ body {
   gap: 20px;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 15vh 1fr  15vh;
+  grid-template-rows: 15vh 1fr 15vh;
   grid-template-areas:
     "menu"
     "player"
@@ -37,7 +37,6 @@ body {
 }
 
 .dice {
-  /* background-color: hsl(0, 0%, 50%); */
   background-image: var(--diceImage);
   background-size: cover;
   width: 100px;
