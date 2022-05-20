@@ -69,7 +69,7 @@ body {
 .indicator {
   width: 30px;
   height: 30px;
-  background-color: red;
+  background-color: var(--indicatorColor);
   border-radius: 15px;
 }
 

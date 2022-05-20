@@ -1,9 +1,10 @@
 {
-  "esversion": 8,
+  "esversion": 11,
   "curly": true,
   "unused": true,
   "undef": true,
   "browser": true,
   "devel": true,
-  "jquery": true
+  "jquery": true,
+  "module": true
 }
