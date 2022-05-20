@@ -20,7 +20,6 @@ function startNewGame() {
   player2.setName("Player2");
   player1.setScore(0);
   player2.setScore(0);
-  player1.showIndicator();
   currentPlayer = player1;
   currentPlayer.setActive(true);
 }
