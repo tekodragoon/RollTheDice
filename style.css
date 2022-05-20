@@ -37,7 +37,9 @@ body {
 }
 
 .dice {
-  background-color: hsl(0, 0%, 50%);
+  /* background-color: hsl(0, 0%, 50%); */
+  background-image: var(--diceImage);
+  background-size: cover;
   width: 100px;
   height: 100px;
 }
