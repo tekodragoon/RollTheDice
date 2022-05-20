@@ -13,3 +13,16 @@ const dice = document.getElementById("dice");
 
 let player1 = new Player(player1Name, player1ind, player1score);
 let player2 = new Player(player2Name, player2ind, player2score);
+let currentPlayer;
+
+function startNewGame() {
+  player1.setName("Player1");
+  player2.setName("Player2");
+  player1.setScore(0);
+  player2.setScore(0);
+  player1.showIndicator();
+  currentPlayer = player1;
+  currentPlayer.setActive(true);
+}
+
+startNewGame();

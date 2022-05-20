@@ -5,6 +5,7 @@ export default class Player {
     this.indicator = indicator;
     this.scoreLabel = scoreLabel;
     this.score = 0;
+    this.setActive(false);
   }
 
   setName(value) {
@@ -18,6 +19,14 @@ export default class Player {
 
   getScore() {
     return this.score;
+  }
+
+  setActive(active) {
+    if (active) {
+      this.showIndicator();
+      return;
+    }
+    this.hideIndicator();
   }
 
   showIndicator() {
