@@ -1,5 +1,6 @@
 import Player from "./scripts/player.js";
 import Dice from "./scripts/dice.js";
+import GameState from "./scripts/gameState.js";
 
 const newGameButton = document.getElementById("ngButton");
 const rollAgainButton = document.getElementById("roll");
@@ -16,6 +17,10 @@ let player1 = new Player(player1Name, player1ind, player1score);
 let player2 = new Player(player2Name, player2ind, player2score);
 let dice = new Dice();
 let currentPlayer;
+
+const MENU = new GameState("menu");
+const INGAME = new GameState("ingame");
+const OVER = new GameState("over");
 
 newGameButton.addEventListener("click", function() {
   startNewGame(); // for now just restart game
@@ -37,7 +42,7 @@ function startNewGame() {
   player2.setScore(0);
   currentPlayer = player1;
   currentPlayer.setActive(true);
-  setDiceImage(1);
+  setDiceImage(4);
 }
 
 function setDiceImage(value) {
