@@ -5,6 +5,8 @@ import GameState from "./scripts/gameState.js";
 const newGameButton = document.getElementById("ngButton");
 const rollAgainButton = document.getElementById("roll");
 const keepScoreButton = document.getElementById("keepScore");
+const gameButtonPanel = document.getElementById("gameButtonPanel");
+const playerPanel = document.getElementById("playerPanel");
 const player1Name = document.getElementById("playerName1");
 const player2Name = document.getElementById("playerName2");
 const player1ind = document.getElementById("indicator-1");
@@ -14,33 +16,43 @@ const player2score = document.getElementById("score-2");
 const diceImage = document.getElementById("dice");
 
 let player1 = new Player(player1Name, player1ind, player1score);
-player1.setActive(false);
 let player2 = new Player(player2Name, player2ind, player2score);
-player2.setActive(false);
 let dice = new Dice();
 let currentPlayer;
 
 const MENU = new GameState("menu");
 const INGAME = new GameState("ingame");
 const OVER = new GameState("over");
+let state;
 
-newGameButton.addEventListener("click", function() {
+newGameButton.addEventListener("click", function () {
   startNewGame(); // for now just restart game
   //TODO: show new game dialog
 });
 
-rollAgainButton.addEventListener("click", function() {
+rollAgainButton.addEventListener("click", function () {
   rollAgain();
 });
 
-keepScoreButton.addEventListener("click", function() {
+keepScoreButton.addEventListener("click", function () {
   keepScore();
 });
 
+function init() {
+  gameButtonPanel.style.display = "none";
+  playerPanel.style.display = "none";
+  state = MENU;
+  player1.setActive(false);
+  player2.setActive(false);
+}
+
 function startNewGame() {
+  gameButtonPanel.style.display = "flex";
+  playerPanel.style.display = "flex";
   currentPlayer = player1;
   currentPlayer.setActive(true);
   setDiceImage(1);
+  state = INGAME;
 }
 
 function setDiceImage(value) {
@@ -56,4 +68,4 @@ function keepScore() {
   console.log("keep score");
 }
 
-// startNewGame();
+init();

@@ -10,7 +10,7 @@ export default class Dice {
       return _diceValue;
     };
     this.getUrl = function () {
-      return `images/Face${this._diceValue}.png`;
+      return `images/Face${_diceValue}.png`;
     };
   }
 }

@@ -27,7 +27,7 @@ body {
   align-items: center;
 }
 
-.player {
+.playerPanel {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,7 +43,7 @@ body {
   height: 100px;
 }
 
-.gameButton {
+.gameButtonPanel {
   display: flex;
   justify-content: center;
   align-items: center;
