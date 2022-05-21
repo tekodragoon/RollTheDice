@@ -1,39 +1,39 @@
 export default class Player {
   constructor(nameLabel, indicator, scoreLabel) {
-    this.nameLabel = nameLabel;
-    this.name = nameLabel.innerText;
-    this.indicator = indicator;
-    this.scoreLabel = scoreLabel;
-    this.score = 0;
-    this.setActive(false);
-  }
+    var _nameLabel = nameLabel;
+    var _indicator = indicator;
+    var _scoreLabel = scoreLabel;
+    var _isActive = false;
+    var _score = 0;
 
-  setName(value) {
-    this.nameLabel.innerText = value;
-  }
+    this.setName = function (value) {
+      _nameLabel.innerText = value;
+    };
 
-  setScore(value) {
-    this.score = value;
-    this.scoreLabel.innerText = value.toString();
-  }
+    this.setScore = function (value) {
+      _score = value;
+      _scoreLabel.innerText = value.toString();
+    };
 
-  getScore() {
-    return this.score;
-  }
+    this.getScore = function () {
+      return _score;
+    };
 
-  setActive(active) {
-    if (active) {
-      this.showIndicator();
-      return;
-    }
-    this.hideIndicator();
-  }
+    this.setActive = function (value) {
+      _isActive = value;
+      if (_isActive) {
+        _showIndicator();
+        return;
+      } 
+      _hideIndicator();
+    };
 
-  showIndicator() {
-    this.indicator.style.setProperty("--indicatorColor", 'red');
-  }
+    var _showIndicator = function () {
+      _indicator.style.setProperty("--indicatorColor", "red");
+    };
 
-  hideIndicator() {
-    this.indicator.style.setProperty("--indicatorColor", 'transparent');
+    var _hideIndicator = function () {
+      _indicator.style.setProperty("--indicatorColor", "transparent");
+    };
   }
 }

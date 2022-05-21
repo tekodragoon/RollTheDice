@@ -1,17 +1,16 @@
 export default class Dice {
   constructor(diceValue = 1) {
-    this.diceValue = diceValue;
-  }
-
-  setValue(value) {
-    this.diceValue = value;
-  }
-
-  getValue() {
-    return this.diceValue;
-  }
-
-  getUrl() {
-    return `images/Face${this.diceValue}.png`;
+    var _diceValue = diceValue;
+    this.setValue = function (value) {
+      if (value >= 1 && value <= 6) {
+        _diceValue = value;
+      }
+    };
+    this.getValue = function () {
+      return _diceValue;
+    };
+    this.getUrl = function () {
+      return `images/Face${this._diceValue}.png`;
+    };
   }
 }

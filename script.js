@@ -14,7 +14,9 @@ const player2score = document.getElementById("score-2");
 const diceImage = document.getElementById("dice");
 
 let player1 = new Player(player1Name, player1ind, player1score);
+player1.setActive(false);
 let player2 = new Player(player2Name, player2ind, player2score);
+player2.setActive(false);
 let dice = new Dice();
 let currentPlayer;
 
@@ -36,13 +38,9 @@ keepScoreButton.addEventListener("click", function() {
 });
 
 function startNewGame() {
-  player1.setName("Player1");
-  player2.setName("Player2");
-  player1.setScore(0);
-  player2.setScore(0);
   currentPlayer = player1;
   currentPlayer.setActive(true);
-  setDiceImage(4);
+  setDiceImage(1);
 }
 
 function setDiceImage(value) {
@@ -58,4 +56,4 @@ function keepScore() {
   console.log("keep score");
 }
 
-startNewGame();
+// startNewGame();
