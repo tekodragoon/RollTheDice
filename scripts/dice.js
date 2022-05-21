@@ -12,5 +12,8 @@ export default class Dice {
     this.getUrl = function () {
       return `images/Face${_diceValue}.png`;
     };
+    this.roll = function() {
+      _diceValue = Math.floor(Math.random() * 6) + 1;
+    };
   }
 }

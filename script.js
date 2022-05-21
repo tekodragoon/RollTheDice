@@ -14,11 +14,13 @@ const player2ind = document.getElementById("indicator-2");
 const player1score = document.getElementById("score-1");
 const player2score = document.getElementById("score-2");
 const diceImage = document.getElementById("dice");
+const currentScoreText = document.getElementById("currentScore");
 
-let player1 = new Player(player1Name, player1ind, player1score);
-let player2 = new Player(player2Name, player2ind, player2score);
+let player1 = new Player(player1Name, player1ind, player1score, 1);
+let player2 = new Player(player2Name, player2ind, player2score, 2);
 let dice = new Dice();
 let currentPlayer;
+let currentScore;
 
 const MENU = new GameState("menu");
 const INGAME = new GameState("ingame");
@@ -51,21 +53,62 @@ function startNewGame() {
   playerPanel.style.display = "flex";
   currentPlayer = player1;
   currentPlayer.setActive(true);
-  setDiceImage(1);
+  setDiceImage();
   state = INGAME;
+  currentScore = 0;
 }
 
-function setDiceImage(value) {
-  dice.setValue(value);
+function setDiceImage() {
   diceImage.style.setProperty("--diceImage", `url(${dice.getUrl()})`);
 }
 
 function rollAgain() {
-  console.log("roll again");
+  if (state === OVER) {
+    return;
+  }
+  dice.roll();
+  setDiceImage();
+  if (dice.getValue() !== 1) {
+    currentScore += dice.getValue();
+    currentScoreText.innerText = currentScore.toString();
+    rollAgainButton.innerText = "Roll again";
+    return;
+  }
+  switchPlayer();
 }
 
 function keepScore() {
-  console.log("keep score");
+  if (state === OVER) {
+    return;
+  }
+  currentPlayer.addScore(currentScore);
+  checkWin();
+}
+
+function switchPlayer() {
+  rollAgainButton.innerText = "Roll";
+  currentScore = 0;
+  currentScoreText.innerText = currentScore.toString();
+  currentPlayer.setActive(false);
+  switch (currentPlayer.getIndex()) {
+    case 1:
+      currentPlayer = player2;
+      break;
+    case 2:
+      currentPlayer = player1;
+      break;
+  }
+  currentPlayer.setActive(true);
+}
+
+function checkWin() {
+  if (currentPlayer.getScore() >= 100) {
+    console.log(`${currentPlayer.getName()} win the game`);
+    state = OVER;
+    currentPlayer.setActive(false);
+    return;
+  }
+  switchPlayer();
 }
 
 init();
