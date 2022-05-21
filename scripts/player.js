@@ -24,6 +24,12 @@ export default class Player {
       _scoreLabel.innerText = _score.toString();
     };
 
+    this.resetScore = function() {
+      _score = 0;
+      _scoreLabel.innerText = _score.toString();
+      this.setActive(false);
+    };
+
     this.getScore = function () {
       return _score;
     };

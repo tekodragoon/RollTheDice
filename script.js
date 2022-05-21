@@ -51,6 +51,8 @@ function init() {
 function startNewGame() {
   gameButtonPanel.style.display = "flex";
   playerPanel.style.display = "flex";
+  player1.resetScore();
+  player2.resetScore();
   currentPlayer = player1;
   currentPlayer.setActive(true);
   setDiceImage();
