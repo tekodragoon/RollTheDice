@@ -1,6 +1,7 @@
 import Player from "./scripts/player.js";
 import Dice from "./scripts/dice.js";
 import GameState from "./scripts/gameState.js";
+import dialogPolyfill from "./node_modules/dialog-polyfill/dist/dialog-polyfill.esm.js";
 
 const newGameButton = document.getElementById("ngButton");
 const rollAgainButton = document.getElementById("roll");
@@ -26,16 +27,44 @@ const MENU = new GameState("menu");
 const INGAME = new GameState("ingame");
 const OVER = new GameState("over");
 let state;
+let gameMode;
+
+const dialogWindow = document.getElementById("newGameDialog");
+dialogPolyfill.registerDialog(dialogWindow);
+
+const warningMessage = document.getElementById("warning");
+const newGameForm = document.getElementById("newGameForm");
+newGameForm.addEventListener(
+  "submit",
+  (ev) => {
+    const data = new FormData(newGameForm);
+    for (const entry of data) {
+      switch (entry[0]) {
+        case "player1name":
+          player1.setName(entry[1] != "" ? entry[1] : "Player 1");
+          break;
+        case "player2name":
+          player2.setName(entry[1] != "" ? entry[1] : "Player 2");
+          break;
+        case "gameType":
+          gameMode = entry[1];
+          console.log(`game mode is ${gameMode}`);
+          break;
+      }
+    }
+    ev.preventDefault();
+    dialogWindow.close();
+    startNewGame();
+  },
+  false
+);
 
 newGameButton.addEventListener("click", function () {
-  startNewGame(); // for now just restart game
-  //TODO: show new game dialog
+  openNewGameDialog();
 });
-
 rollAgainButton.addEventListener("click", function () {
   rollAgain();
 });
-
 keepScoreButton.addEventListener("click", function () {
   keepScore();
 });
@@ -46,6 +75,17 @@ function init() {
   state = MENU;
   player1.setActive(false);
   player2.setActive(false);
+}
+
+function openNewGameDialog() {
+  if (state === INGAME) {
+    warningMessage.style.display = "inline";
+  }
+  if (typeof HTMLDialogElement === "function") {
+    dialogWindow.showModal();
+  } else {
+    dialogWindow.show();
+  }
 }
 
 function startNewGame() {
@@ -108,6 +148,7 @@ function checkWin() {
     console.log(`${currentPlayer.getName()} win the game`);
     state = OVER;
     currentPlayer.setActive(false);
+    warningMessage.style.display = "none";
     return;
   }
   switchPlayer();

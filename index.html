@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css" href="node_modules/dialog-polyfill/dist/dialog-polyfill.css" />
   <title>RollTheDice</title>
 </head>
 
@@ -18,7 +19,7 @@
       </div>
     </div>
 
-    <div class="playerPanel" id="playerPanel">
+    <div class="playerPanel sidePanel" id="playerPanel">
 
       <div class="player-1-Side">
         <div class="playerName">
@@ -52,7 +53,7 @@
 
 
     <div class="gameButtonPanel" id="gameButtonPanel">
-      <div class="btnGroup">
+      <div class="columnGroup">
         <div class="btn" type="button" id="roll">Roll</div>
         <div class="btn" type="button" id="keepScore">Keep score</div>
       </div>
@@ -63,6 +64,39 @@
     </div>
 
   </div>
+
+  <dialog id="newGameDialog" class="newGameWindow">
+    <form id="newGameForm" name="newGameForm">
+      <fieldset class="sidePanel">
+        <div class="columnGroup">
+          <label for="player1name">Player 1 Name</label>
+          <input type="text" class="playerNameInput" id="player1name" name="player1name" placeholder="Player 1">
+        </div>
+        <div class="columnGroup">
+          <label for="player2name">Player 2 Name</label>
+          <input type="text" class="playerNameInput" id="player2name" name="player2name" placeholder="Player 2">
+        </div>
+      </fieldset>
+      <fieldset class="sidePanel">
+        <div class="columnGroup">
+          <label for="soloGame" class="radioLabel">
+            <input type="radio" name="gameType" value="solo" id="soloGame">
+            Solo Game
+          </label>
+        </div>
+        <div class="columnGroup">
+          <label for="twoGame" class="radioLabel">
+            <input type="radio" name="gameType" value="two" id="twoGame" checked>
+            Two Player
+          </label>
+        </div>
+      </fieldset>
+      <div class="sidePanel">
+        <span id="warning">La partie en cours sera perdue</span>
+        <button type="submit" class="btn bottomPosition" id="startButton">Start</button>
+      </div>
+    </form>
+  </dialog>
 
   <script type="module" src="script.js"></script>
 
