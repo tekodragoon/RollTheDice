@@ -1,14 +1,23 @@
 export default class Player {
-  constructor(nameLabel, indicator, scoreLabel, index) {
+  constructor(nameLabel, indicator, scoreLabel, index, ia) {
     var _index = index;
     var _nameLabel = nameLabel;
     var _indicator = indicator;
     var _scoreLabel = scoreLabel;
     var _isActive = false;
     var _score = 0;
+    var _ia = ia;
 
     this.getIndex = function() {
       return _index;
+    };
+
+    this.isIa = function() {
+      return _ia;
+    };
+
+    this.setIA = function (isIA) {
+      _ia = isIA;
     };
 
     this.setName = function (value) {

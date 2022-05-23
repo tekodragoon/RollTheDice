@@ -69,11 +69,23 @@
     <form id="newGameForm" name="newGameForm">
       <fieldset class="sidePanel">
         <div class="columnGroup">
-          <label for="player1name">Player 1 Name</label>
+          <div class="flexStart">
+            <label for="player1name">Player 1 Name</label>
+            <label for="iaPlay1" class="radioSolo">
+              <input type="radio" name="iaPlay" value="iaplay1" id="iaPlay1" checked>
+              IA
+            </label>
+          </div>
           <input type="text" class="playerNameInput" id="player1name" name="player1name" placeholder="Player 1">
         </div>
         <div class="columnGroup">
-          <label for="player2name">Player 2 Name</label>
+          <div class="flexStart">
+            <label for="player2name">Player 2 Name</label>
+            <label for="iaPlay2" class="radioSolo">
+              <input type="radio" name="iaPlay" value="iaplay2" id="iaPlay2">
+              IA
+            </label>
+          </div>
           <input type="text" class="playerNameInput" id="player2name" name="player2name" placeholder="Player 2">
         </div>
       </fieldset>

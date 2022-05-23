@@ -17,8 +17,8 @@ const player2score = document.getElementById("score-2");
 const diceImage = document.getElementById("dice");
 const currentScoreText = document.getElementById("currentScore");
 
-let player1 = new Player(player1Name, player1ind, player1score, 1);
-let player2 = new Player(player2Name, player2ind, player2score, 2);
+let player1 = new Player(player1Name, player1ind, player1score, 1, false);
+let player2 = new Player(player2Name, player2ind, player2score, 2, false);
 let dice = new Dice();
 let currentPlayer;
 let currentScore;
@@ -33,6 +33,9 @@ const dialogWindow = document.getElementById("newGameDialog");
 dialogPolyfill.registerDialog(dialogWindow);
 
 const warningMessage = document.getElementById("warning");
+const soloSelector = document.getElementById("soloGame");
+const twoSelector = document.getElementById("twoGame");
+const iaRadio = document.getElementsByClassName("radioSolo");
 const newGameForm = document.getElementById("newGameForm");
 newGameForm.addEventListener(
   "submit",
@@ -48,7 +51,16 @@ newGameForm.addEventListener(
           break;
         case "gameType":
           gameMode = entry[1];
-          console.log(`game mode is ${gameMode}`);
+          break;
+        case "iaPlay":
+          if (entry[1] === "iaplay1" && soloSelector.checked) {
+            player1.setIA(true);
+            player2.setIA(false);
+          }
+          if (entry[1] === "iaplay2" && soloSelector.checked) {
+            player1.setIA(false);
+            player2.setIA(true);
+          }
           break;
       }
     }
@@ -59,6 +71,20 @@ newGameForm.addEventListener(
   false
 );
 
+soloSelector.addEventListener("change", function () {
+  if (soloSelector.checked) {
+    for (const a of iaRadio) {
+      a.style.display = "inline";
+    }
+  }
+});
+twoSelector.addEventListener("change", function () {
+  if (twoSelector.checked) {
+    for (const a of iaRadio) {
+      a.style.display = "none";
+    }
+  }
+});
 newGameButton.addEventListener("click", function () {
   openNewGameDialog();
 });
@@ -82,8 +108,10 @@ function openNewGameDialog() {
     warningMessage.style.display = "inline";
   }
   if (typeof HTMLDialogElement === "function") {
+    // console.log("navigateur compatible avec dialog");
     dialogWindow.showModal();
   } else {
+    // console.log("navigateur incompatible avec dialog");
     dialogWindow.show();
   }
 }
@@ -93,11 +121,18 @@ function startNewGame() {
   playerPanel.style.display = "flex";
   player1.resetScore();
   player2.resetScore();
+  if (twoSelector.checked) {
+    player1.setIA(false);
+    player2.setIA(false);
+  }
   currentPlayer = player1;
   currentPlayer.setActive(true);
   setDiceImage();
   state = INGAME;
   currentScore = 0;
+  // console.log(`game mode is ${gameMode}`);
+  // console.log(`Player 1 is ${player1.isIa() ? "IA" : "Player"}`);
+  // console.log(`Player 2 is ${player2.isIa() ? "IA" : "Player"}`);
 }
 
 function setDiceImage() {
