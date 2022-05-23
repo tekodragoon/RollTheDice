@@ -58,13 +58,18 @@ body {
 
 .btn {
   min-width: 250px;
-  text-align: center;
   padding: 10px;
-  background-color: hsl(200, 30%, 90%);
+  background-color: transparent;
   border-radius: 5px;
   border: 1px solid hsl(0, 0%, 0%);
-  box-shadow: 0 0 4px hsl(0, 0%, 50%);
   font-size: 2.5rem;
+  transition: all 200ms ease;
+}
+
+.btn:hover {
+  background-color: hsla(200, 29%, 90%, 0.15);
+  box-shadow: 0 0 4px hsl(0, 0%, 50%);
+  transform: scale(1.05);
 }
 
 .columnGroup {
