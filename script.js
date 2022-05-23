@@ -26,8 +26,10 @@ let currentScore;
 const MENU = new GameState("menu");
 const INGAME = new GameState("ingame");
 const OVER = new GameState("over");
+const ROLL = new GameState("roll");
 let state;
 let gameMode;
+let rollCounter;
 
 const dialogWindow = document.getElementById("newGameDialog");
 dialogPolyfill.registerDialog(dialogWindow);
@@ -140,11 +142,36 @@ function setDiceImage() {
 }
 
 function rollAgain() {
-  if (state === OVER) {
+  if (state === OVER || state === ROLL) {
     return;
   }
-  dice.roll();
+  state = ROLL;
+  rollCounter = 0;
+  diceImage.classList.add("diceRoll");
+  rollDice();
+}
+
+function rollDice() {
+  let oldResult = dice.getValue();
+  let newResult;
+  do {
+    newResult = Math.floor(Math.random() * 6) + 1;
+  } while (oldResult === newResult);
+  dice.setValue(newResult);
   setDiceImage();
+  rollCounter++;
+  if (rollCounter < 20) {
+    setTimeout(() => {
+      rollDice();
+    }, 50);
+    return;
+  }
+  diceImage.classList.remove("diceRoll");
+  state = INGAME;
+  checkResult();
+}
+
+function checkResult() {
   if (dice.getValue() !== 1) {
     currentScore += dice.getValue();
     currentScoreText.innerText = currentScore.toString();
@@ -155,7 +182,7 @@ function rollAgain() {
 }
 
 function keepScore() {
-  if (state === OVER) {
+  if (state === OVER || state === ROLL) {
     return;
   }
   currentPlayer.addScore(currentScore);

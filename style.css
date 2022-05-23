@@ -49,6 +49,16 @@ body {
   height: 100px;
 }
 
+.diceRoll {
+  animation: roll 1s ease-in;
+}
+
+@keyframes roll {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .gameButtonPanel {
   display: flex;
   justify-content: center;
