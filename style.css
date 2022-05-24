@@ -1,16 +1,53 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap");
 
+:root {
+  --body-base: hsl(13, 46%, 86%);
+  --body-highlight: hsl(32, 100%, 97%);
+  --shadow-color: hsl(347, 16%, 22%);
+  --board-left: hsl(36, 100%, 96%);
+  --board-right: hsl(120, 2%, 88%);
+  --text-color: hsl(29, 18%, 27%);
+  --button-color: hsla(30, 30%, 50%, 0.6);
+  --button-hover-color: hsl(30, 30%, 50%);
+  --button-border: hsl(29, 18%, 27%);
+  --dialog-back: hsla(120, 5%, 20%, 0.85);
+}
+
 body {
   margin: 0;
   font-family: "Lato", sans-serif;
+  background-color: var(--body-base);
+  background: linear-gradient(
+    0deg,
+    var(--body-base) 0%,
+    var(--body-highlight) 50%,
+    var(--body-base) 100%
+  );
 }
 
+/* 
+  #402E32
+  #ED982A
+  #DFE0DF
+  #00C9AE
+
+  #FFC0B9
+  #DFE0DF
+*/
+
 .board {
-  background-color: hsl(200, 55%, 70%);
-  width: 95vw;
+  background-color: #fff7eb;
+  background: linear-gradient(
+    90deg,
+    var(--board-left) 50%,
+    var(--board-right) 50%
+  );
+  box-shadow: 0 0 20px var(--shadow-color);
+  border-radius: 10px;
+  width: 90vw;
   height: 90vh;
   margin: auto;
-  margin-top: 2vh;
+  margin-top: 2.5vh;
   padding: 20px;
   gap: 20px;
   display: grid;
@@ -26,6 +63,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  color:var(--text-color);
 }
 
 .sidePanel {
@@ -34,7 +72,7 @@ body {
   align-items: center;
   font-size: 2rem;
   padding: 20px;
-  gap: 30px;
+  gap: 20px;
 }
 
 .playerPanel {
@@ -69,17 +107,16 @@ body {
 .btn {
   min-width: 250px;
   padding: 10px;
-  background-color: transparent;
+  background-color: var(--button-color);
   border-radius: 5px;
-  border: 1px solid hsl(0, 0%, 0%);
+  border: 1px solid var(--button-border);
   font-size: 2.5rem;
-  transition: all 200ms ease;
+  transition: all 200ms ease-in;
 }
 
 .btn:hover {
-  background-color: hsla(200, 29%, 90%, 0.15);
-  box-shadow: 0 0 4px hsl(0, 0%, 50%);
-  transform: scale(1.05);
+  background-color: var(--button-hover-color);
+  transform: scale(1.02);
 }
 
 .columnGroup {
@@ -108,25 +145,37 @@ body {
 }
 
 .currentScore {
+  color: var(--text-color);
   font-size: 1.5rem;
+  padding: 30px;
   text-align: center;
   min-width: 200px;
-  border: 1px solid hsl(0, 0%, 0%);
+  border: 1px solid var(--button-border);
+  border-radius: 5px;
 }
 
-dialog::backdrop { /* native */
-  background-color: hsla(120, 5%, 20%, 0.85);
+
+#currentScore {
+  margin-left: 20px;
+  font-size: 2rem;
 }
 
-dialog + .backdrop { /* polyfill */
-  background-color: hsla(120, 5%, 20%, 0.85);
+dialog::backdrop {
+  /* native */
+  background-color: var(--dialog-back);
+}
+
+dialog + .backdrop {
+  /* polyfill */
+  background-color: var(--dialog-back);
 }
 
 .newGameWindow {
-  width: 40vw;
+  width: 540px;
   height: 40vh;
+  min-height: 280px;
   font-weight: 300;
-  font-size: 1.5rem;
+  border: none;
   border-radius: 10px;
   display: flex;
   justify-content: space-evenly;
