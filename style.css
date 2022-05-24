@@ -50,7 +50,7 @@ body {
 }
 
 .diceRoll {
-  animation: roll 1s ease-in;
+  animation: roll 950ms ease-in;
 }
 
 @keyframes roll {

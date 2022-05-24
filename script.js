@@ -30,6 +30,7 @@ const ROLL = new GameState("roll");
 let state;
 let gameMode;
 let rollCounter;
+let count;
 
 const dialogWindow = document.getElementById("newGameDialog");
 dialogPolyfill.registerDialog(dialogWindow);
@@ -132,13 +133,46 @@ function startNewGame() {
   setDiceImage();
   state = INGAME;
   currentScore = 0;
+  count = 0;
   // console.log(`game mode is ${gameMode}`);
   // console.log(`Player 1 is ${player1.isIa() ? "IA" : "Player"}`);
   // console.log(`Player 2 is ${player2.isIa() ? "IA" : "Player"}`);
+  if (gameMode === "solo" && player1.isIa()) {
+    iaPlay();
+  }
 }
 
 function setDiceImage() {
   diceImage.style.setProperty("--diceImage", `url(${dice.getUrl()})`);
+}
+
+function iaPlay() {
+  if (count === 0) {
+    console.log("first turn. IA roll");
+    rollAgain();
+    return;
+  }
+  let iaRollAgain = 500;
+  iaRollAgain -= count * 40;
+  let playerScore =
+    currentPlayer.getIndex() === 1 ? player2.getScore() : player1.getScore();
+  iaRollAgain -=
+    playerScore > currentPlayer.getScore() ? 20 * count : 70 * count;
+  if (currentPlayer.getScore() + currentScore > 100) {
+    iaRollAgain = -1;
+  }
+  let randomMinDecision = Math.floor(Math.random() * 300);
+  if (iaRollAgain > randomMinDecision) {
+    console.log(`roll again score: ${iaRollAgain}`);
+    console.log(`rand decision: ${randomMinDecision}`);
+    console.log("ia roll again");
+    setTimeout(() => {
+      rollAgain();
+    }, 200);
+    return;
+  }
+  console.log("ia keep score");
+  keepScore();
 }
 
 function rollAgain() {
@@ -166,19 +200,31 @@ function rollDice() {
     }, 50);
     return;
   }
-  diceImage.classList.remove("diceRoll");
   state = INGAME;
   checkResult();
 }
 
 function checkResult() {
+  diceImage.classList.remove("diceRoll");
+  if (count === 0) {
+    rollAgainButton.innerText = "Roll again";
+  }
+  count++;
   if (dice.getValue() !== 1) {
     currentScore += dice.getValue();
     currentScoreText.innerText = currentScore.toString();
-    rollAgainButton.innerText = "Roll again";
+    if (currentPlayer.isIa()) {
+      iaPlay();
+    }
     return;
   }
-  switchPlayer();
+  if (gameMode === "solo") {
+    setTimeout(() => {
+      switchPlayer();
+    }, 1500);
+  } else {
+    switchPlayer();
+  }
 }
 
 function keepScore() {
@@ -192,6 +238,7 @@ function keepScore() {
 function switchPlayer() {
   rollAgainButton.innerText = "Roll";
   currentScore = 0;
+  count = 0;
   currentScoreText.innerText = currentScore.toString();
   currentPlayer.setActive(false);
   switch (currentPlayer.getIndex()) {
@@ -203,6 +250,9 @@ function switchPlayer() {
       break;
   }
   currentPlayer.setActive(true);
+  if (currentPlayer.isIa()) {
+    iaPlay();
+  }
 }
 
 function checkWin() {
