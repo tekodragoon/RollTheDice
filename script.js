@@ -36,14 +36,20 @@ let count;
 const dialogWindow = document.getElementById("newGameDialog");
 dialogPolyfill.registerDialog(dialogWindow);
 
+dialogWindow.addEventListener("cancel", (ev) => {
+  ev.preventDefault();
+});
+
 const warningMessage = document.getElementById("warning");
 const soloSelector = document.getElementById("soloGame");
 const twoSelector = document.getElementById("twoGame");
 const iaRadio = document.getElementsByClassName("iconRadio");
+const cancelButton = document.getElementById("cancelButton");
 const newGameForm = document.getElementById("newGameForm");
 newGameForm.addEventListener(
   "submit",
   (ev) => {
+    console.log("submit");
     const data = new FormData(newGameForm);
     for (const entry of data) {
       switch (entry[0]) {
@@ -74,6 +80,11 @@ newGameForm.addEventListener(
   },
   false
 );
+cancelButton.addEventListener("click", (ev => {
+  console.log("cancel");
+  ev.preventDefault();
+  dialogWindow.close();
+}));
 
 soloSelector.addEventListener("change", function () {
   if (soloSelector.checked) {
