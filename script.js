@@ -107,7 +107,7 @@ function init() {
 
 function openNewGameDialog() {
   if (state === INGAME) {
-    warningMessage.style.display = "inline";
+    warningMessage.classList.remove("displayNone");
     document.documentElement.style.setProperty("--dialog-background", "hsla(39, 66%, 82%, 0.5)");
   }
   if (typeof HTMLDialogElement === "function") {
@@ -271,7 +271,7 @@ function checkWin() {
     console.log(`${currentPlayer.getName()} win the game`);
     state = OVER;
     currentPlayer.setActive(false);
-    warningMessage.style.display = "none";
+    warningMessage.classList.add("displayNone");
     return;
   }
   switchPlayer();

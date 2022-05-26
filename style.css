@@ -42,7 +42,7 @@ body {
   width: 90vw;
   height: 90vh;
   margin: auto;
-  margin-top: 2.5vh;
+  margin-top: 5vh;
   padding: 20px;
   gap: 20px;
   display: grid;
@@ -77,12 +77,14 @@ body {
 
 .playerPanel {
   grid-area: player-area;
+  display: flex;
   width: 60%;
   min-width: fit-content;
   margin: auto;
-  justify-content: center;
+  justify-content: space-evenly;
+  font-size: 2rem;
   align-items: center;
-  /* background-color: var(--blue-color); */
+  gap: 10px;
 }
 
 .gameButtonPanel {
@@ -96,14 +98,6 @@ body {
   margin: auto;
 }
 
-.sidePanel {
-  display: flex;
-  justify-content: space-evenly;
-  font-size: 2rem;
-  padding: 20px;
-  gap: 20px;
-}
-
 .playerInfo {
   width: calc(var(--playerWidth) + 40px);
   display: flex;
@@ -112,6 +106,14 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
   gap: 50px;
+}
+
+.sidePanel {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 2rem;
+  padding: 20px;
+  gap: 20px;
 }
 
 .columnGroup {
@@ -146,15 +148,13 @@ body {
 .newGameWindow {
   width: 560px;
   height: 40vh;
-  min-height: 280px;
+  min-height: 350px;
   font-weight: 300;
   border: none;
   background-color: var(--dialog-background);
   border-radius: 10px;
   display: flex;
-  justify-content: space-evenly;
-  gap: 20px;
-  padding: 20px;
+  flex-direction: column;
   animation: show 200ms ease-in-out;
 }
 
@@ -198,7 +198,7 @@ dialog + .backdrop {
 
 .bottomPosition {
   position: absolute;
-  bottom: 1rem;
+  bottom: 0;
 }
 
 .radioLabel {
@@ -207,17 +207,14 @@ dialog + .backdrop {
   font-weight: 400;
 }
 
-#warning {
-  display: none;
-}
-
 .highlightText {
   color: var(--pale-yellow-highlight);
 }
 
 .warningText {
-  color: var(--red-color);
-  text-shadow: 0 0 1px black;
+  color: red;
+  text-align: center;
+  font-size: 1.3rem;
 }
 
 .radioSolo {
@@ -229,6 +226,7 @@ dialog + .backdrop {
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
+  height: 40px;
 }
 
 /* dice class */
@@ -291,7 +289,6 @@ dialog + .backdrop {
 
 .switch-field {
   display: flex;
-  margin-bottom: 36px;
   overflow: hidden;
   justify-content: center;
   padding: 20px;
