@@ -13,15 +13,15 @@
 <body>
   <div class="board">
 
-    <div class="menu">
+    <div class="menu woodBackground">
       <button class="btn" type="button" id="ngButton">
         New Game
       </button>
     </div>
 
-    <div class="playerPanel sidePanel" id="playerPanel">
+    <div class="playerPanel sidePanel displayNone" id="playerPanel">
 
-      <div class="player-1-Side">
+      <div class="playerInfo woodBackground">
         <div class="playerName">
           <div id="playerName1">
             Player 1
@@ -29,7 +29,7 @@
           <div class="indicator" id="indicator-1"></div>
         </div>
         <div class="score">
-          <p id="score-1">0</p>
+          <span id="score-1">0</span>
         </div>
       </div>
 
@@ -37,7 +37,7 @@
 
       </div>
 
-      <div class="player-2-Side">
+      <div class="playerInfo woodBackground">
         <div class="playerName">
           <div id="playerName2">
             Player 2
@@ -45,14 +45,14 @@
           <div class="indicator" id="indicator-2"></div>
         </div>
         <div class="score">
-          <p id="score-2">0</p>
+          <span id="score-2">0</span>
         </div>
       </div>
 
     </div>
 
 
-    <div class="gameButtonPanel" id="gameButtonPanel">
+    <div class="gameButtonPanel woodBackground displayNone" id="gameButtonPanel">
       <div class="columnGroup">
         <button class="btn" type="button" id="roll">Roll</button>
         <button class="btn" type="button" id="keepScore">Keep score</button>
@@ -67,7 +67,7 @@
 
   <dialog id="newGameDialog" class="newGameWindow">
     <form id="newGameForm" name="newGameForm">
-      <fieldset class="sidePanel">
+      <fieldset class="sidePanel woodBackground">
         <div class="columnGroup">
           <div class="flexStart">
             <label for="player1name">Player 1 Name</label>
@@ -89,7 +89,7 @@
           <input type="text" class="playerNameInput" id="player2name" name="player2name" placeholder="Player 2">
         </div>
       </fieldset>
-      <fieldset class="sidePanel">
+      <fieldset class="sidePanel woodBackground">
         <div class="columnGroup">
           <label for="soloGame" class="radioLabel">
             <input type="radio" name="gameType" value="solo" id="soloGame">
@@ -99,13 +99,13 @@
         <div class="columnGroup">
           <label for="twoGame" class="radioLabel">
             <input type="radio" name="gameType" value="two" id="twoGame" checked>
-            Two Player
+            Two Players
           </label>
         </div>
       </fieldset>
       <div class="sidePanel">
-        <span id="warning">Current game will be lost</span>
-        <button type="submit" class="btn bottomPosition" id="startButton">Start</button>
+        <span id="warning" class="warningText">Current game will be lost</span>
+        <button type="submit" class="btn bottomPosition highlightText" id="startButton">Start</button>
       </div>
     </form>
   </dialog>

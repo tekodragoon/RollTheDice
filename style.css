@@ -1,48 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap");
 
 :root {
-  --body-base: hsl(13, 46%, 86%);
-  --body-highlight: hsl(32, 100%, 97%);
-  --shadow-color: hsl(347, 16%, 22%);
-  --board-left: hsl(36, 100%, 96%);
-  --board-right: hsl(120, 2%, 88%);
-  --text-color: hsl(29, 18%, 27%);
-  --button-color: hsla(30, 30%, 50%, 0.6);
-  --button-hover-color: hsl(30, 30%, 50%);
-  --button-border: hsl(29, 18%, 27%);
-  --dialog-back: hsla(120, 5%, 20%, 0.85);
+  --blue-color: hsl(196, 96%, 28%);
+  --green-color: hsl(163, 96%, 22%);
+  --yellow-color: hsl(50, 96%, 48%);
+  --pale-yellow-color: hsl(39, 82%, 72%);
+  --pale-yellow-highlight: hsl(39, 66%, 82%);
+  --red-color: hsl(5, 87%, 60%);
+  --text-black: hsl(250, 65%, 5%);
+  --text-white: hsl(0, 0%, 95%);
+  --shadow-color: hsl(10, 13%, 9%);
+  --dialog-background: transparent;
 }
 
 body {
   margin: 0;
   font-family: "Lato", sans-serif;
-  background-color: var(--body-base);
+  color: var(--text-white);
+  background-color: var(--pale-yellow-color);
   background: linear-gradient(
     0deg,
-    var(--body-base) 0%,
-    var(--body-highlight) 50%,
-    var(--body-base) 100%
+    var(--pale-yellow-color) 0%,
+    var(--pale-yellow-highlight) 50%,
+    var(--pale-yellow-color) 100%
   );
 }
 
-/* 
-  #402E32
-  #ED982A
-  #DFE0DF
-  #00C9AE
-
-  #FFC0B9
-  #DFE0DF
-*/
-
 .board {
-  background-color: #fff7eb;
-  background: linear-gradient(
-    90deg,
-    var(--board-left) 50%,
-    var(--board-right) 50%
-  );
-  box-shadow: 0 0 20px var(--shadow-color);
+  background-color: black;
+  background-image: url("images/green_background.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  box-shadow: 5px 5px 30px var(--shadow-color);
   border-radius: 10px;
   width: 90vw;
   height: 90vh;
@@ -52,33 +41,189 @@ body {
   gap: 20px;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 15vh 1fr 15vh;
+  grid-template-rows: 10vh 40vh 15vh;
   grid-template-areas:
-    "menu"
-    "player"
-    "gameButton";
+    "menu-area"
+    "player-area"
+    "gameButton-area";
+  align-content: space-around;
 }
 
+/* div base class */
+
 .menu {
+  grid-area: menu-area;
   display: flex;
   justify-content: center;
   align-items: center;
-  color:var(--text-color);
+  min-width: fit-content;
+  width: 40%;
+  height: 100%;
+  margin: auto;
+}
+
+.woodBackground {
+  background-image: url("images/wood.jpg");
+  border: 1px solid var(--shadow-color);
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px var(--shadow-color);
+}
+
+.playerPanel {
+  grid-area: player-area;
+  width: 60%;
+  min-width: fit-content;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  /* background-color: var(--blue-color); */
+}
+
+.gameButtonPanel {
+  grid-area: gameButton-area;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  width: 40%;
+  height: 100%;
+  margin: auto;
 }
 
 .sidePanel {
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
   font-size: 2rem;
   padding: 20px;
   gap: 20px;
 }
 
-.playerPanel {
-  justify-content: center;
-  gap: 150px;
+.playerInfo {
+  width: calc(var(--playerWidth) - 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 20px;
+  gap: 50px;
 }
+
+.columnGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* button class */
+
+.btn {
+  width: fit-content;
+  padding: 10px;
+  background-color: transparent;
+  color: var(--text-white);
+  border-radius: 5px;
+  border: none;
+  font-size: 2.5rem;
+}
+
+.btn:hover {
+  color: var(--yellow-color);
+}
+
+.btn:focus {
+  outline: none;
+}
+
+/* game window menu */
+
+.newGameWindow {
+  width: 540px;
+  height: 40vh;
+  min-height: 280px;
+  font-weight: 300;
+  border: none;
+  background-color: var(--dialog-background);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+  padding: 20px;
+  animation: show 200ms ease-in-out;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0.5;
+    transform: scale(0);
+  }
+}
+
+fieldset {
+  margin-bottom: 10px;
+}
+
+label {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-white);
+}
+
+dialog::backdrop {
+  /* native */
+  background-color: hsla(35, 65%, 0%, 0.6);
+}
+
+dialog + .backdrop {
+  /* polyfill */
+  background-color: hsla(35, 65%, 0%, 0.6);
+}
+
+.playerNameInput {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.playerNameInput:focus {
+  outline: none;
+}
+
+.bottomPosition {
+  position: absolute;
+  bottom: 1rem;
+}
+
+.radioLabel {
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+}
+
+#warning {
+  display: none;
+}
+
+.highlightText {
+  color: var(--pale-yellow-highlight);
+}
+
+.warningText {
+  color: var(--red-color);
+  text-shadow: 0 0 1px black;
+}
+
+.radioSolo {
+  display: none;
+}
+
+.flexStart {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+/* dice class */
 
 .dice {
   background-image: var(--diceImage);
@@ -97,33 +242,7 @@ body {
   }
 }
 
-.gameButtonPanel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
-}
-
-.btn {
-  min-width: 250px;
-  padding: 10px;
-  background-color: var(--button-color);
-  border-radius: 5px;
-  border: 1px solid var(--button-border);
-  font-size: 2.5rem;
-  transition: all 200ms ease-in;
-}
-
-.btn:hover {
-  background-color: var(--button-hover-color);
-  transform: scale(1.02);
-}
-
-.columnGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+/* game class */
 
 .score {
   font-weight: 100;
@@ -140,86 +259,22 @@ body {
 
 .playerName {
   display: flex;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 15px;
 }
 
 .currentScore {
-  color: var(--text-color);
   font-size: 1.5rem;
   padding: 30px;
   text-align: center;
   min-width: 200px;
-  border: 1px solid var(--button-border);
-  border-radius: 5px;
 }
-
 
 #currentScore {
   margin-left: 20px;
   font-size: 2rem;
 }
 
-dialog::backdrop {
-  /* native */
-  background-color: var(--dialog-back);
-}
-
-dialog + .backdrop {
-  /* polyfill */
-  background-color: var(--dialog-back);
-}
-
-.newGameWindow {
-  width: 540px;
-  height: 40vh;
-  min-height: 280px;
-  font-weight: 300;
-  border: none;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-evenly;
-  gap: 20px;
-  padding: 20px;
-}
-
-.playerNameInput {
-  padding: 0.5rem;
-  font-size: 1.2rem;
-  font-weight: 300;
-}
-
-.bottomPosition {
-  position: absolute;
-  bottom: 1rem;
-}
-
-label {
-  font-size: 1rem;
-  font-style: italic;
-}
-fieldset {
-  margin-bottom: 10px;
-  border-radius: 5px;
-}
-
-.radioLabel {
-  font-size: 1.2rem;
-  font-style: normal;
-  font-weight: 300;
-}
-
-#warning {
+.displayNone {
   display: none;
-}
-
-.radioSolo {
-  display: none;
-}
-
-.flexStart {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 20px;
 }

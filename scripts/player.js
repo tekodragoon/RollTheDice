@@ -53,7 +53,7 @@ export default class Player {
     };
 
     var _showIndicator = function () {
-      _indicator.style.setProperty("--indicatorColor", "red");
+      _indicator.style.setProperty("--indicatorColor", "var(--red-color)");
     };
 
     var _hideIndicator = function () {

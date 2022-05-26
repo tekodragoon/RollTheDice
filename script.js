@@ -14,6 +14,7 @@ const player1ind = document.getElementById("indicator-1");
 const player2ind = document.getElementById("indicator-2");
 const player1score = document.getElementById("score-1");
 const player2score = document.getElementById("score-2");
+const playerInfo = document.getElementsByClassName("playerInfo");
 const diceImage = document.getElementById("dice");
 const currentScoreText = document.getElementById("currentScore");
 
@@ -99,8 +100,6 @@ keepScoreButton.addEventListener("click", function () {
 });
 
 function init() {
-  gameButtonPanel.style.display = "none";
-  playerPanel.style.display = "none";
   state = MENU;
   player1.setActive(false);
   player2.setActive(false);
@@ -109,6 +108,7 @@ function init() {
 function openNewGameDialog() {
   if (state === INGAME) {
     warningMessage.style.display = "inline";
+    document.documentElement.style.setProperty("--dialog-background", "hsla(39, 66%, 82%, 0.5)");
   }
   if (typeof HTMLDialogElement === "function") {
     // console.log("navigateur compatible avec dialog");
@@ -120,8 +120,8 @@ function openNewGameDialog() {
 }
 
 function startNewGame() {
-  gameButtonPanel.style.display = "flex";
-  playerPanel.style.display = "flex";
+  gameButtonPanel.classList.remove("displayNone");
+  playerPanel.classList.remove("displayNone");
   player1.resetScore();
   player2.resetScore();
   if (twoSelector.checked) {
@@ -133,7 +133,15 @@ function startNewGame() {
   setDiceImage();
   state = INGAME;
   currentScore = 0;
+  currentScoreText.innerText = currentScore.toString();
+  rollAgainButton.innerText = "Roll";
   count = 0;
+  let player1width = playerInfo[0].offsetWidth;
+  let player2width = playerInfo[1].offsetWidth;
+  let maxWidth = Math.max(player1width, player2width);
+  for(const p of playerInfo) {
+    p.style.setProperty("--playerWidth", `${maxWidth}px`);
+  }
   // console.log(`game mode is ${gameMode}`);
   // console.log(`Player 1 is ${player1.isIa() ? "IA" : "Player"}`);
   // console.log(`Player 2 is ${player2.isIa() ? "IA" : "Player"}`);
