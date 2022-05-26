@@ -89,20 +89,18 @@
           <input type="text" class="playerNameInput" id="player2name" name="player2name" placeholder="Player 2">
         </div>
       </fieldset>
-      <fieldset class="sidePanel woodBackground">
-        <div class="columnGroup">
-          <label for="soloGame" class="radioLabel">
-            <input type="radio" name="gameType" value="solo" id="soloGame">
-            Solo Game
-          </label>
-        </div>
-        <div class="columnGroup">
-          <label for="twoGame" class="radioLabel">
-            <input type="radio" name="gameType" value="two" id="twoGame" checked>
-            Two Players
-          </label>
-        </div>
+
+      <fieldset class="woodBackground switch-field">
+        <input type="radio" name="gameType" value="solo" id="soloGame">
+        <label for="soloGame" class="radioLabel">
+          Solo Game
+        </label>
+        <input type="radio" name="gameType" value="two" id="twoGame" checked>
+        <label for="twoGame" class="radioLabel">
+          Two Players
+        </label>
       </fieldset>
+
       <div class="sidePanel">
         <span id="warning" class="warningText">Current game will be lost</span>
         <button type="submit" class="btn bottomPosition highlightText" id="startButton">Start</button>
