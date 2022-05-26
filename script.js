@@ -136,6 +136,9 @@ function startNewGame() {
   currentScoreText.innerText = currentScore.toString();
   rollAgainButton.innerText = "Roll";
   count = 0;
+  for(const p of playerInfo) {
+    p.style.removeProperty("--playerWidth");
+  }
   let player1width = playerInfo[0].offsetWidth;
   let player2width = playerInfo[1].offsetWidth;
   let maxWidth = Math.max(player1width, player2width);
