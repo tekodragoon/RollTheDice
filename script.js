@@ -39,7 +39,7 @@ dialogPolyfill.registerDialog(dialogWindow);
 const warningMessage = document.getElementById("warning");
 const soloSelector = document.getElementById("soloGame");
 const twoSelector = document.getElementById("twoGame");
-const iaRadio = document.getElementsByClassName("radioSolo");
+const iaRadio = document.getElementsByClassName("iconRadio");
 const newGameForm = document.getElementById("newGameForm");
 newGameForm.addEventListener(
   "submit",
@@ -78,14 +78,14 @@ newGameForm.addEventListener(
 soloSelector.addEventListener("change", function () {
   if (soloSelector.checked) {
     for (const a of iaRadio) {
-      a.style.display = "inline";
+      a.classList.remove("displayNone");
     }
   }
 });
 twoSelector.addEventListener("change", function () {
   if (twoSelector.checked) {
     for (const a of iaRadio) {
-      a.style.display = "none";
+      a.classList.add("displayNone");
     }
   }
 });
