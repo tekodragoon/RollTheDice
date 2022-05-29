@@ -43,6 +43,7 @@ const warningMessage = document.getElementById("warning");
 const soloSelector = document.getElementById("soloGame");
 const twoSelector = document.getElementById("twoGame");
 const iaRadio = document.getElementsByClassName("iconRadio");
+const startButton = document.getElementById("startButton");
 const cancelButton = document.getElementById("cancelButton");
 const newGameForm = document.getElementById("newGameForm");
 newGameForm.addEventListener(
@@ -118,7 +119,11 @@ function init() {
 function openNewGameDialog() {
   if (state === INGAME) {
     warningMessage.classList.remove("displayNone");
-    document.documentElement.style.setProperty("--dialog-background", "hsla(39, 66%, 82%, 0.5)");
+    document.documentElement.style.setProperty("--dialog-background", "hsl(39, 66%, 82%)");
+    cancelButton.classList.remove("highlightText");
+    cancelButton.classList.add("blackBtn");
+    startButton.classList.remove("highlightText");
+    startButton.classList.add("blackBtn");
   }
   if (typeof HTMLDialogElement === "function") {
     // console.log("navigateur compatible avec dialog");

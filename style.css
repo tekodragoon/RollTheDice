@@ -63,7 +63,7 @@ body {
   justify-content: center;
   align-items: center;
   min-width: fit-content;
-  width: 40%;
+  width: 60%;
   height: 100%;
   margin: auto;
 }
@@ -93,7 +93,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 50px;
-  width: 40%;
+  width: 60%;
   height: 100%;
   margin: auto;
 }
@@ -211,6 +211,10 @@ dialog + .backdrop {
 
 .highlightText {
   color: var(--pale-yellow-highlight);
+}
+
+.blackBtn {
+  color: var(--text-black);
 }
 
 .warningText {
@@ -385,4 +389,104 @@ input[type="radio"]::before {
 
 input[type="radio"]:checked::before {
   transform: scale(1);
+}
+
+/* Media Query */
+
+@media screen and (max-width: 992px) {
+  .gameButtonPanel,
+  .menu {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .playerPanel {
+    display: block;
+    margin: auto;
+  }
+  .playerInfo {
+    display: block;
+    width: 100%;
+    padding: 5px;
+  }
+  .dice {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .newGameWindow {
+    width: 100%;
+    min-height: 450px;
+    padding: 5px;
+    background-color: var(--pale-yellow-color);
+  }
+  .newGameWindow .btn {
+    color: var(--text-black);
+  }
+  .btn {
+    font-size: 1.5rem;
+  }
+  #playerFieldSet {
+    display: block;
+  }
+  input {
+    margin-bottom: 10px;
+  }
+  .playerName {
+    font-size: 1.2rem;
+  }
+  .score {
+    font-size: 2rem;
+  }
+  .dice {
+    width: 80px;
+    height: 80px;
+  }
+  .gameButtonPanel,
+  .menu {
+    width: 90%;
+  }
+  .gameButtonPanel {
+    gap: auto;
+    height: fit-content;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .currentScore {
+    font-size: 1.2rem;
+    width: fit-content;
+    min-width: 0;
+    padding: 5px;
+    margin-left: 10px;
+  }
+  #currentScore {
+    font-size: 1.5rem;
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .gameButtonPanel {
+    gap: 5px;
+  }
+  .btn {
+    font-size: 1.2rem;
+  }
+  #playerFieldSet {
+    padding: 5px;
+  }
+  .flexStart {
+    gap: 10px;
+    width: fit-content;
+  }
+  .playerNameInput {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
