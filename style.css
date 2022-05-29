@@ -112,12 +112,13 @@ body {
   display: flex;
   justify-content: space-evenly;
   font-size: 2rem;
-  padding: 20px;
+  padding: 10px;
   gap: 20px;
 }
 
 .columnGroup {
   display: flex;
+  width: fit-content;
   flex-direction: column;
   gap: 10px;
 }
@@ -141,7 +142,7 @@ body {
 /* game window menu */
 
 .newGameWindow {
-  width: 560px;
+  width: fit-content;
   height: 40vh;
   min-height: 350px;
   font-weight: 300;
@@ -187,7 +188,8 @@ dialog + .backdrop {
   font-weight: 300;
 }
 
-.playerNameInput:focus {
+.playerNameInput:focus,
+input[type="radio"]:focus {
   outline: none;
 }
 
@@ -224,6 +226,7 @@ dialog + .backdrop {
 
 .flexStart {
   display: flex;
+  width: fit-content;
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
@@ -483,7 +486,6 @@ input[type="radio"]:checked::before {
   }
   .flexStart {
     gap: 10px;
-    width: fit-content;
   }
   .playerNameInput {
     padding-top: 0.5rem;
