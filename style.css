@@ -238,6 +238,12 @@ dialog + .backdrop {
   background-size: cover;
   width: 100px;
   height: 100px;
+  transition: transform 200ms ease-in;
+}
+
+.dice:hover {
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 .diceRoll {
@@ -246,7 +252,7 @@ dialog + .backdrop {
 
 @keyframes roll {
   100% {
-    transform: rotate(360deg);
+    transform: rotate(720deg);
   }
 }
 

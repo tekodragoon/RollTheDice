@@ -4,7 +4,6 @@ import GameState from "./scripts/gameState.js";
 import dialogPolyfill from "./node_modules/dialog-polyfill/dist/dialog-polyfill.esm.js";
 
 const newGameButton = document.getElementById("ngButton");
-const rollAgainButton = document.getElementById("roll");
 const keepScoreButton = document.getElementById("keepScore");
 const gameButtonPanel = document.getElementById("gameButtonPanel");
 const playerPanel = document.getElementById("playerPanel");
@@ -103,7 +102,7 @@ twoSelector.addEventListener("change", function () {
 newGameButton.addEventListener("click", function () {
   openNewGameDialog();
 });
-rollAgainButton.addEventListener("click", function () {
+diceImage.addEventListener("click", function () {
   rollAgain();
 });
 keepScoreButton.addEventListener("click", function () {
@@ -145,7 +144,6 @@ function startNewGame() {
   state = INGAME;
   currentScore = 0;
   currentScoreText.innerText = currentScore.toString();
-  rollAgainButton.innerText = "Roll";
   count = 0;
   for(const p of playerInfo) {
     p.style.removeProperty("--playerWidth");
@@ -229,9 +227,6 @@ function rollDice() {
 
 function checkResult() {
   diceImage.classList.remove("diceRoll");
-  if (count === 0) {
-    rollAgainButton.innerText = "Roll again";
-  }
   count++;
   if (dice.getValue() !== 1) {
     currentScore += dice.getValue();
@@ -259,7 +254,6 @@ function keepScore() {
 }
 
 function switchPlayer() {
-  rollAgainButton.innerText = "Roll";
   currentScore = 0;
   count = 0;
   currentScoreText.innerText = currentScore.toString();
