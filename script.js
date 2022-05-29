@@ -39,6 +39,28 @@ dialogWindow.addEventListener("cancel", (ev) => {
   ev.preventDefault();
 });
 
+const helpWindow = document.getElementById("helpDialog");
+dialogPolyfill.registerDialog(helpWindow);
+
+const helpButton = document.getElementById("helpButton");
+helpButton.addEventListener("click", function() {
+  openHelpDialog();
+});
+const closeHelpButton = document.getElementById("closeButton");
+closeHelpButton.addEventListener("click", function() {
+  helpWindow.close();
+});
+
+function openHelpDialog() {
+  if (typeof HTMLDialogElement === "function") {
+    // console.log("navigateur compatible avec dialog");
+    helpWindow.showModal();
+  } else {
+    // console.log("navigateur incompatible avec dialog");
+    helpWindow.show();
+  }
+}
+
 const warningMessage = document.getElementById("warning");
 const soloSelector = document.getElementById("soloGame");
 const twoSelector = document.getElementById("twoGame");

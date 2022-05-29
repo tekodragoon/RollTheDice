@@ -13,6 +13,7 @@
 
 <body>
   <div class="board">
+    <div type="button" class="help woodBackground" id="helpButton">?</div>
 
     <div class="menu woodBackground">
       <button class="btn" type="button" id="ngButton">
@@ -108,6 +109,28 @@
         <button type="submit" class="btn highlightText" id="startButton">Start</button>
       </div>
     </form>
+  </dialog>
+
+  <dialog id="helpDialog" class="helpDialog">
+    <div class="helpTitle">Roll the dice:</div>
+    <p class="helpText decText">
+      First to score 100 points win the game.
+    </p>
+    <p class="helpSubTitle">
+      How to play:
+    </p>
+    <p class="helpText">
+      On each turn, you throw a die and scores as many points as the total shown on the die.
+    </p>
+    <p class="helpText">
+      If you don't roll a 1, you have to decide to keep your current score or
+      throw the die again to accumulate more points.
+    </p>
+    <p class="helpText">
+      If you roll a 1, you lose all your current score and your turn is over.
+      The game continue until a player reach 100 points.
+    </p>
+    <button type="cancel" class="closeButton" id="closeButton">X</button>
   </dialog>
 
   <script type="module" src="script.js"></script>
