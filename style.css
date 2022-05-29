@@ -134,11 +134,6 @@ body {
   font-size: 2.5rem;
 }
 
-.btn:hover {
-  color: var(--yellow-color);
-  cursor: pointer;
-}
-
 .btn:focus {
   outline: none;
 }
@@ -245,17 +240,14 @@ dialog + .backdrop {
   transition: transform 200ms ease-in;
 }
 
-.dice:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-}
-
 .diceRoll {
+  -webkit-animation: roll 950ms ease-in;
   animation: roll 950ms ease-in;
 }
 
 @keyframes roll {
   100% {
+    -webkit-transform: rotate(720deg);
     transform: rotate(720deg);
   }
 }
@@ -392,6 +384,16 @@ input[type="radio"]:checked::before {
 }
 
 /* Media Query */
+
+@media (hover: hover) {
+  .dice:hover {
+    cursor: pointer;
+  }
+  .btn:hover {
+    color: var(--yellow-color);
+    cursor: pointer;
+  }
+}
 
 @media screen and (max-width: 992px) {
   .gameButtonPanel,
