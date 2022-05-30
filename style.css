@@ -126,6 +126,21 @@ body {
   gap: 20px;
 }
 
+.gameButtonGroup {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 2.5rem;
+  padding: 10px;
+}
+
+.winMessageGroup {
+  width: 90%;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
 .columnGroup {
   display: flex;
   width: fit-content;
@@ -338,15 +353,13 @@ input[type="radio"]:focus {
 }
 
 .currentScore {
-  font-size: 2rem;
-  padding: 30px;
+  padding: 10px;
   text-align: center;
   min-width: 200px;
 }
 
 #currentScore {
   margin-left: 20px;
-  font-size: 2.5rem;
 }
 
 .displayNone {
@@ -483,6 +496,9 @@ input[type="radio"]:checked::before {
     margin-top: 10px;
     margin-bottom: 10px;
   }
+  .gameButtonGroup {
+    width: 90%;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -534,6 +550,26 @@ input[type="radio"]:checked::before {
   #currentScore {
     font-size: 1.5rem;
     margin-left: 5px;
+  }
+  .gameButtonGroup {
+    width: 100%;
+    padding: 0;
+  }
+  .winMessageGroup {
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .winMessageGroup {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .winMessageGroup {
+    font-size: 1.2rem;
   }
 }
 

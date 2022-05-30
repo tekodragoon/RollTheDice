@@ -17,6 +17,9 @@ const playerInfo = document.getElementsByClassName("playerInfo");
 const diceImage = document.getElementById("dice");
 const currentScoreText = document.getElementById("currentScore");
 
+const gameGroupButton = document.getElementById("gameButtonGroup");
+const winMessageGroup = document.getElementById("winMessageGroup");
+
 let player1 = new Player(player1Name, player1ind, player1score, 1, false);
 let player2 = new Player(player2Name, player2ind, player2score, 2, false);
 let dice = new Dice();
@@ -27,6 +30,7 @@ const MENU = new GameState("menu");
 const INGAME = new GameState("ingame");
 const OVER = new GameState("over");
 const ROLL = new GameState("roll");
+const WINSCORE = 100;
 let state;
 let gameMode;
 let rollCounter;
@@ -43,11 +47,11 @@ const helpWindow = document.getElementById("helpDialog");
 dialogPolyfill.registerDialog(helpWindow);
 
 const helpButton = document.getElementById("helpButton");
-helpButton.addEventListener("click", function() {
+helpButton.addEventListener("click", function () {
   openHelpDialog();
 });
 const closeHelpButton = document.getElementById("closeButton");
-closeHelpButton.addEventListener("click", function() {
+closeHelpButton.addEventListener("click", function () {
   helpWindow.close();
 });
 
@@ -76,10 +80,22 @@ newGameForm.addEventListener(
     for (const entry of data) {
       switch (entry[0]) {
         case "player1name":
-          player1.setName(entry[1] != "" ? entry[1] : "Player 1");
+          {
+            let name = entry[1] != "" ? entry[1] : "Player 1";
+            if (document.getElementById("iaPlay1").checked && soloSelector.checked) {
+              name = "IA";
+            }
+            player1.setName(name);
+          }
           break;
         case "player2name":
-          player2.setName(entry[1] != "" ? entry[1] : "Player 2");
+          {
+            let name = entry[1] != "" ? entry[1] : "Player 2";
+            if (document.getElementById("iaPlay2").checked && soloSelector.checked) {
+              name = "IA";
+            }
+            player2.setName(name);
+          }
           break;
         case "gameType":
           gameMode = entry[1];
@@ -102,11 +118,11 @@ newGameForm.addEventListener(
   },
   false
 );
-cancelButton.addEventListener("click", (ev => {
+cancelButton.addEventListener("click", (ev) => {
   console.log("cancel");
   ev.preventDefault();
   dialogWindow.close();
-}));
+});
 
 soloSelector.addEventListener("change", function () {
   if (soloSelector.checked) {
@@ -141,7 +157,10 @@ function init() {
 function openNewGameDialog() {
   if (state === INGAME) {
     warningMessage.classList.remove("displayNone");
-    document.documentElement.style.setProperty("--dialog-background", "hsl(39, 66%, 82%)");
+    document.documentElement.style.setProperty(
+      "--dialog-background",
+      "hsl(39, 66%, 82%)"
+    );
     cancelButton.classList.remove("highlightText");
     cancelButton.classList.add("blackBtn");
     startButton.classList.remove("highlightText");
@@ -157,8 +176,11 @@ function openNewGameDialog() {
 }
 
 function startNewGame() {
+  gameGroupButton.classList.remove("displayNone");
+  winMessageGroup.classList.add("displayNone");
   gameButtonPanel.classList.remove("displayNone");
   playerPanel.classList.remove("displayNone");
+  document.getElementById("soloMessage").innerText = "Well done!";
   player1.resetScore();
   player2.resetScore();
   if (twoSelector.checked) {
@@ -172,14 +194,14 @@ function startNewGame() {
   currentScore = 0;
   currentScoreText.innerText = currentScore.toString();
   count = 0;
-  for(const p of playerInfo) {
+  for (const p of playerInfo) {
     p.style.removeProperty("--playerWidth");
   }
   let player1width = playerInfo[0].offsetWidth;
   let player2width = playerInfo[1].offsetWidth;
   let maxWidth = Math.max(player1width, player2width);
   maxWidth = Math.max(maxWidth, 120);
-  for(const p of playerInfo) {
+  for (const p of playerInfo) {
     p.style.setProperty("--playerWidth", `${maxWidth}px`);
   }
   // console.log(`game mode is ${gameMode}`);
@@ -205,9 +227,8 @@ function iaPlay() {
   let playerScore =
     currentPlayer.getIndex() === 1 ? player2.getScore() : player1.getScore();
   let actualScore = currentPlayer.getScore() + currentScore;
-  iaRollAgain -=
-    playerScore > actualScore ? 20 * count : 70 * count;
-  if (actualScore > 100) {
+  iaRollAgain -= playerScore > actualScore ? 20 * count : 70 * count;
+  if (actualScore > WINSCORE) {
     iaRollAgain = -1;
   }
   let randomMinDecision = Math.floor(Math.random() * 300);
@@ -225,6 +246,7 @@ function iaPlay() {
 }
 
 function rollAgain() {
+  // todo: in solo game prevent player to roll when ia is playing
   if (state === OVER || state === ROLL) {
     return;
   }
@@ -301,7 +323,15 @@ function switchPlayer() {
 }
 
 function checkWin() {
-  if (currentPlayer.getScore() >= 100) {
+  if (currentPlayer.getScore() >= WINSCORE) {
+    gameGroupButton.classList.add("displayNone");
+    winMessageGroup.classList.remove("displayNone");
+    let p = document.getElementById("winMessage");
+    p.innerText = `${currentPlayer.getName()} win the game`;
+    if (gameMode === "solo" && currentPlayer.isIa()) {
+      let p = document.getElementById("soloMessage");
+      p.innerText = "Too bad!";
+    }
     console.log(`${currentPlayer.getName()} win the game`);
     state = OVER;
     currentPlayer.setActive(false);

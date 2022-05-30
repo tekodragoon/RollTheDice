@@ -55,12 +55,16 @@
 
 
     <div class="gameButtonPanel woodBackground displayNone" id="gameButtonPanel">
-      <div class="columnGroup">
+      <div class="gameButtonGroup" id="gameButtonGroup">
         <button class="btn" type="button" id="keepScore">Keep score</button>
+        <div class="currentScore">
+          Current:
+          <span id="currentScore">0</span>
+        </div>
       </div>
-      <div class="currentScore">
-        Current:
-        <span id="currentScore">0</span>
+      <div class="winMessageGroup displayNone" id="winMessageGroup">
+        <p id="winMessage">Player 1 win the game</p>
+        <p id="soloMessage">Well done!</p>
       </div>
     </div>
 
