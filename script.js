@@ -196,7 +196,7 @@ function setDiceImage() {
 
 function iaPlay() {
   if (count === 0) {
-    console.log("first turn. IA roll");
+    // console.log("first turn. IA roll");
     rollAgain();
     return;
   }
@@ -204,22 +204,23 @@ function iaPlay() {
   iaRollAgain -= count * 40;
   let playerScore =
     currentPlayer.getIndex() === 1 ? player2.getScore() : player1.getScore();
+  let actualScore = currentPlayer.getScore() + currentScore;
   iaRollAgain -=
-    playerScore > currentPlayer.getScore() ? 20 * count : 70 * count;
-  if (currentPlayer.getScore() + currentScore > 100) {
+    playerScore > actualScore ? 20 * count : 70 * count;
+  if (actualScore > 100) {
     iaRollAgain = -1;
   }
   let randomMinDecision = Math.floor(Math.random() * 300);
   if (iaRollAgain > randomMinDecision) {
-    console.log(`roll again score: ${iaRollAgain}`);
-    console.log(`rand decision: ${randomMinDecision}`);
-    console.log("ia roll again");
+    // console.log(`roll again score: ${iaRollAgain}`);
+    // console.log(`rand decision: ${randomMinDecision}`);
+    // console.log("ia roll again");
     setTimeout(() => {
       rollAgain();
     }, 200);
     return;
   }
-  console.log("ia keep score");
+  // console.log("ia keep score");
   keepScore();
 }
 
