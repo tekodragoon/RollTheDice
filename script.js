@@ -30,6 +30,7 @@ const MENU = new GameState("menu");
 const INGAME = new GameState("ingame");
 const OVER = new GameState("over");
 const ROLL = new GameState("roll");
+const CHECK = new GameState("Check");
 const WINSCORE = 100;
 let state;
 let gameMode;
@@ -142,7 +143,9 @@ newGameButton.addEventListener("click", function () {
   openNewGameDialog();
 });
 diceImage.addEventListener("click", function () {
-  rollAgain();
+  if (!currentPlayer.isIa() && state !== CHECK) {
+    rollAgain();
+  }
 });
 keepScoreButton.addEventListener("click", function () {
   keepScore();
@@ -246,7 +249,6 @@ function iaPlay() {
 }
 
 function rollAgain() {
-  // todo: in solo game prevent player to roll when ia is playing
   if (state === OVER || state === ROLL) {
     return;
   }
@@ -276,6 +278,7 @@ function rollDice() {
 }
 
 function checkResult() {
+  state = CHECK;
   diceImage.classList.remove("diceRoll");
   count++;
   if (dice.getValue() !== 1) {
@@ -284,6 +287,7 @@ function checkResult() {
     if (currentPlayer.isIa()) {
       iaPlay();
     }
+    state = INGAME;
     return;
   }
   if (gameMode === "solo") {
@@ -304,6 +308,7 @@ function keepScore() {
 }
 
 function switchPlayer() {
+  state = INGAME;
   currentScore = 0;
   count = 0;
   currentScoreText.innerText = currentScore.toString();
