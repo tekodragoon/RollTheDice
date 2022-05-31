@@ -65,7 +65,7 @@ body {
   align-content: space-around;
 }
 
-/* div base class */
+/* -----------------------------------------------------------div base class */
 
 .menu {
   grid-area: menu-area;
@@ -148,7 +148,7 @@ body {
   gap: 10px;
 }
 
-/* button class */
+/* -------------------------------------------------------------button class */
 
 .btn {
   width: fit-content;
@@ -164,7 +164,7 @@ body {
   outline: none;
 }
 
-/* help window */
+/* --------------------------------------------------------------help window */
 
 .helpDialog {
   width: 80%;
@@ -215,7 +215,7 @@ body {
   outline: none;
 }
 
-/* game window menu */
+/* ---------------------------------------------------------game window menu */
 
 .newGameWindow {
   width: fit-content;
@@ -309,7 +309,7 @@ input[type="radio"]:focus {
   height: 40px;
 }
 
-/* dice class */
+/* ---------------------------------------------------------------dice class */
 
 .dice {
   background-image: var(--diceImage);
@@ -331,7 +331,7 @@ input[type="radio"]:focus {
   }
 }
 
-/* game class */
+/* ---------------------------------------------------------------game class */
 
 .score {
   font-weight: 100;
@@ -366,7 +366,7 @@ input[type="radio"]:focus {
   display: none !important;
 }
 
-/* custom radio button */
+/* ------------------------------------------------------custom radio button */
 
 .switch-field {
   display: flex;
@@ -414,7 +414,7 @@ input[type="radio"]:focus {
   border-radius: 0 4px 4px 0;
 }
 
-/* ia radio button */
+/* ----------------------------------------------------------ia radio button */
 
 .iconRadio {
   display: grid;
@@ -438,7 +438,6 @@ input[type="radio"] {
   width: 1.5em;
   height: 1.5em;
   border: none;
-  /* border-radius: 50%; */
   display: grid;
   place-content: center;
 }
@@ -452,15 +451,13 @@ input[type="radio"]::before {
   background-repeat: no-repeat;
   transform: scale(0);
   transition: 120ms transform ease-in-out;
-  /* box-shadow: inset 1em 1em var(--blue-color); */
-  /* background-color: CanvasText; */
 }
 
 input[type="radio"]:checked::before {
   transform: scale(1);
 }
 
-/* Media Query */
+/* --------------------------------------------------------------Media Query */
 
 @media (hover: hover) {
   .dice:hover,

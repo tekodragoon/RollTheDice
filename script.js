@@ -3,6 +3,8 @@ import Dice from "./scripts/dice.js";
 import GameState from "./scripts/gameState.js";
 import dialogPolyfill from "./node_modules/dialog-polyfill/dist/dialog-polyfill.esm.js";
 
+// --------------------------------------------------------Variable declaration
+
 const newGameButton = document.getElementById("ngButton");
 const keepScoreButton = document.getElementById("keepScore");
 const gameButtonPanel = document.getElementById("gameButtonPanel");
@@ -16,9 +18,19 @@ const player2score = document.getElementById("score-2");
 const playerInfo = document.getElementsByClassName("playerInfo");
 const diceImage = document.getElementById("dice");
 const currentScoreText = document.getElementById("currentScore");
-
 const gameGroupButton = document.getElementById("gameButtonGroup");
 const winMessageGroup = document.getElementById("winMessageGroup");
+const warningMessage = document.getElementById("warning");
+const soloSelector = document.getElementById("soloGame");
+const twoSelector = document.getElementById("twoGame");
+const iaRadio = document.getElementsByClassName("iconRadio");
+const startButton = document.getElementById("startButton");
+const cancelButton = document.getElementById("cancelButton");
+const newGameForm = document.getElementById("newGameForm");
+const helpButton = document.getElementById("helpButton");
+const closeHelpButton = document.getElementById("closeButton");
+
+// -----------------------------------------------------Variable initialisation
 
 let player1 = new Player(player1Name, player1ind, player1score, 1, false);
 let player2 = new Player(player2Name, player2ind, player2score, 2, false);
@@ -32,47 +44,25 @@ const OVER = new GameState("over");
 const ROLL = new GameState("roll");
 const CHECK = new GameState("Check");
 const WINSCORE = 100;
+
 let state;
 let gameMode;
 let rollCounter;
 let count;
 
+// ------------------------------------------------------------dialog constante
+
 const dialogWindow = document.getElementById("newGameDialog");
 dialogPolyfill.registerDialog(dialogWindow);
+const helpWindow = document.getElementById("helpDialog");
+dialogPolyfill.registerDialog(helpWindow);
 
 dialogWindow.addEventListener("cancel", (ev) => {
   ev.preventDefault();
 });
 
-const helpWindow = document.getElementById("helpDialog");
-dialogPolyfill.registerDialog(helpWindow);
+// --------------------------------------------------------------Event listener
 
-const helpButton = document.getElementById("helpButton");
-helpButton.addEventListener("click", function () {
-  openHelpDialog();
-});
-const closeHelpButton = document.getElementById("closeButton");
-closeHelpButton.addEventListener("click", function () {
-  helpWindow.close();
-});
-
-function openHelpDialog() {
-  if (typeof HTMLDialogElement === "function") {
-    // console.log("navigateur compatible avec dialog");
-    helpWindow.showModal();
-  } else {
-    // console.log("navigateur incompatible avec dialog");
-    helpWindow.show();
-  }
-}
-
-const warningMessage = document.getElementById("warning");
-const soloSelector = document.getElementById("soloGame");
-const twoSelector = document.getElementById("twoGame");
-const iaRadio = document.getElementsByClassName("iconRadio");
-const startButton = document.getElementById("startButton");
-const cancelButton = document.getElementById("cancelButton");
-const newGameForm = document.getElementById("newGameForm");
 newGameForm.addEventListener(
   "submit",
   (ev) => {
@@ -150,6 +140,14 @@ diceImage.addEventListener("click", function () {
 keepScoreButton.addEventListener("click", function () {
   keepScore();
 });
+helpButton.addEventListener("click", function () {
+  openHelpDialog();
+});
+closeHelpButton.addEventListener("click", function () {
+  helpWindow.close();
+});
+
+// -------------------------------------------------------------------Functions
 
 function init() {
   state = MENU;
@@ -175,6 +173,16 @@ function openNewGameDialog() {
   } else {
     // console.log("navigateur incompatible avec dialog");
     dialogWindow.show();
+  }
+}
+
+function openHelpDialog() {
+  if (typeof HTMLDialogElement === "function") {
+    // console.log("navigateur compatible avec dialog");
+    helpWindow.showModal();
+  } else {
+    // console.log("navigateur incompatible avec dialog");
+    helpWindow.show();
   }
 }
 
