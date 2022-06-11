@@ -340,12 +340,12 @@ function checkWin() {
     gameGroupButton.classList.add("displayNone");
     winMessageGroup.classList.remove("displayNone");
     let p = document.getElementById("winMessage");
-    p.innerText = `${currentPlayer.getName()} win the game`;
+    p.innerText = `${currentPlayer.getName()} wins the game`;
     if (gameMode === "solo" && currentPlayer.isIa()) {
       let p = document.getElementById("soloMessage");
       p.innerText = "Too bad!";
     }
-    console.log(`${currentPlayer.getName()} win the game`);
+    // console.log(`${currentPlayer.getName()} win the game`);
     state = OVER;
     currentPlayer.setActive(false);
     warningMessage.classList.add("displayNone");
